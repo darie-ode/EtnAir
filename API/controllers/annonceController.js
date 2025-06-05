@@ -92,8 +92,11 @@ exports.getAnnonceById = async (req, res) => {
 exports.addAnnonce = async (req, res) => {
   const {
     titre, description, prix, date_publication, nombre_chambres,
-    ville, disponible, date_disponible, utilisateur_id, photo_url
+    ville, disponible, date_disponible, photo_url
   } = req.body;
+
+  // L'ID utilisateur vient du token (middleware verifyToken)
+  const utilisateur_id = req.user.id;
 
   // Validation des champs requis
   if (

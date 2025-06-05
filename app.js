@@ -8,9 +8,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/utilisateurs', require('./routes/utilisateurs'));
-app.use('/annonces', require('./routes/annonces'));
-app.use('/auth', require('./routes/auth')); // Nouvelle route pour l'authentification
+app.use('/utilisateur', require('./API/routes/utilisateurs'));
+app.use('/annonces', require('./API/routes/annonces'));
+app.use('/auth', require('./API/routes/auth'));
 
 // Route racine
 app.get('/', (req, res) => {
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     endpoints: {
       utilisateurs: '/utilisateurs',
       annonces: '/annonces',
-      authentification: '/auth/login'
+      //authentification: '/auth/login'
     }
   });
 });
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ 
     error: 'Route non trouvée.',
-    availableRoutes: ['/', '/utilisateurs', '/annonces', '/auth/login']
+    availableRoutes: ['/', '/utilisateurs', '/annonces']
   });
 });
 
