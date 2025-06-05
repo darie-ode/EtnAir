@@ -1,24 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const jwt = require('jsonwebtoken');
- const bcrypt = require('bcrypt');
-const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
+const pool = require('../config/db'); // Utiliser la config centralisée
 
-const app = express();
-app.use(express.json());
-
-const pool = new Pool({
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_NAME,
-});
+const router = express.Router();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'ton_secret_par_defaut';
 
 // Route POST /login
-app.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, mot_de_passe } = req.body;
 
     if (!email || !mot_de_passe) {
@@ -51,3 +42,5 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ error: 'Erreur serveur' });
     }
 });
+
+module.exports = router;

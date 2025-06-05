@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const annonceController = require('../controllers/annonceController');
-const verifyToken = require('../API/middlewares/verifyToken'); // <-- ici
+const verifyToken = require('../../middleware/verifyToken'); // <-- corrigé
 
 // GET /annonces - Récupérer toutes les annonces avec filtres optionnels
 router.get('/', annonceController.getAnnonces);

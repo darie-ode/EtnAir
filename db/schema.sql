@@ -4,7 +4,8 @@ CREATE TABLE utilisateur (
     nom VARCHAR(100),
     email VARCHAR(255) UNIQUE,
     mot_de_passe VARCHAR(255),
-    photo_url VARCHAR(255)
+    photo_url VARCHAR(255),
+    date_creation TIMESTAMP DEFAULT NOW()
 );
 
 -- Table annonce

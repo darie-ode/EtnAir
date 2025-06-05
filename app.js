@@ -10,7 +10,7 @@ app.use(express.json());
 // Routes
 app.use('/utilisateur', require('./API/routes/utilisateurs'));
 app.use('/annonces', require('./API/routes/annonces'));
-app.use('/auth', require('./API/routes/auth'));
+app.use('/auth', require('./API/routes/login'));
 
 // Route racine
 app.get('/', (req, res) => {
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     message: 'Bienvenue sur l\'API de Darie',
     version: '1.0.0',
     endpoints: {
-      utilisateurs: '/utilisateurs',
+      utilisateurs: '/utilisateur',
       annonces: '/annonces',
       //authentification: '/auth/login'
     }
